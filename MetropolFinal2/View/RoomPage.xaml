@@ -1,0 +1,89 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MetropolFinal2.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:MetropolFinal2.ViewModel"
+    x:Class="MetropolFinal2.View.RoomPage"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="ListViewItemStyle1" TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="IsHoldingEnabled" Value="True"/>
+            <Setter Property="Margin" Value="0,0,18,2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <ListViewItemPresenter CheckHintBrush="{ThemeResource ListViewItemCheckHintThemeBrush}" CheckBrush="#FFFFFFFF" ContentMargin="4" ContentTransitions="{TemplateBinding ContentTransitions}" CheckSelectingBrush="{ThemeResource ListViewItemCheckSelectingThemeBrush}" DragForeground="{ThemeResource ListViewItemDragForegroundThemeBrush}" DragOpacity="{ThemeResource ListViewItemDragThemeOpacity}" DragBackground="#66FFFFFF" DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}" FocusBorderBrush="{ThemeResource ListViewItemFocusBorderThemeBrush}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" PointerOverBackgroundMargin="1" PlaceholderBackground="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" PointerOverBackground="#4DFFFFFF" ReorderHintOffset="{ThemeResource ListViewItemReorderHintThemeOffset}" SelectedPointerOverBorderBrush="#FF003A5A" SelectionCheckMarkVisualEnabled="True" SelectedForeground="{ThemeResource ListViewItemSelectedForegroundThemeBrush}" SelectedBackground="#FF004F63" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" SelectedPointerOverBackground="#FF003D58" Foreground="#FF003947"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+
+    <Grid Background="#c0bebf">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.DataContext>
+            <ViewModel:RoomPageVM/>
+        </Grid.DataContext>
+        <TextBlock HorizontalAlignment="Left" Foreground="#012255" Margin="110,50,0,0" TextWrapping="Wrap" Text="Select a room" FontSize="35" VerticalAlignment="Top"/>
+        <ListView ItemContainerStyle="{StaticResource ListViewItemStyle1}" HorizontalAlignment="Right" Height="400" Margin="0,30,10,0" VerticalAlignment="Top" Width="320" ItemsSource="{Binding Rooms}" SelectedItem="{Binding SelectedRoom, Mode=TwoWay}" Grid.Row="1">
+            <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Width="480">
+                        <TextBlock Text="{Binding }" Margin="10,10,0,0" HorizontalAlignment="Left" Width="490" Height="28" FontWeight="Bold" FontSize="18" FontFamily="Global User Interface"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+        </ListView>
+        <Button Height="50" Width="120" Content="Confirm" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Command="{Binding NavigateToTimeCommand}" Grid.Row="1" Foreground="#FF00CBFD" BorderBrush="#FF231F20" Background="#FF231F20"/>
+        <AppBarButton HorizontalAlignment="Left" Icon="Back" Margin="18,36,0,0" VerticalAlignment="Top" Command="{Binding NavigateBackCommand}" Height="68" Foreground="#FF012255" />
+        <StackPanel Grid.Column="1" Margin="20,30,0,0" Orientation="Vertical" Grid.Row="1">
+            <StackPanel HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="270">
+                <StackPanel.Background>
+                    <SolidColorBrush Color="#FF2EA5FF" Opacity="0.2"/>
+                </StackPanel.Background>
+
+                <StackPanel Margin="10,10,0,0" Orientation="Horizontal">
+                    <TextBlock Foreground="#012255" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Room number:" FontSize="23" VerticalAlignment="Top"/>
+                    <TextBlock Margin="0,20,10,0" Width="90" TextAlignment="Right" Foreground="#012255" HorizontalAlignment="Right" FontWeight="Bold" TextWrapping="Wrap" Text="{Binding RoomID}" FontSize="23" VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Margin="10,10,0,0" Orientation="Horizontal">
+                    <TextBlock Foreground="#012255" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Number of seats:" FontSize="23" VerticalAlignment="Top"/>
+                    <TextBlock Margin="0,20,10,0" Width="70" TextAlignment="Right" Foreground="#012255" HorizontalAlignment="Right" FontWeight="Bold" TextWrapping="Wrap" Text="{Binding NumberOfSeats}" FontSize="23" VerticalAlignment="Top"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Margin="0,20,0,0" Height="200" VerticalAlignment="Top" Width="270">
+                <StackPanel.Background>
+                    <SolidColorBrush Color="#FF2EA5FF" Opacity="0.2"/>
+                </StackPanel.Background>
+                <StackPanel Margin="10,10,0,0" Orientation="Vertical">
+                    <TextBlock Foreground="#012255" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Facilities:" FontSize="23" VerticalAlignment="Top"/>
+                    <TextBlock Margin="0,5,10,0" Foreground="#012255" HorizontalAlignment="Left" FontWeight="Bold" TextWrapping="Wrap" Text="{Binding Projector}" FontSize="23" VerticalAlignment="Top"/>
+                    <TextBlock Margin="0,5,10,0" Foreground="#012255" HorizontalAlignment="Left" FontWeight="Bold" TextWrapping="Wrap" Text="{Binding WhiteBoard}" FontSize="23" VerticalAlignment="Top"/>
+                    <TextBlock Margin="0,10,10,0" Foreground="#012255" Height="70" Width="250" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding OtherFacilities}" FontSize="20" VerticalAlignment="Top"/>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+
+    </Grid>
+</Page>

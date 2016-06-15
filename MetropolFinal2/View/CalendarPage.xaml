@@ -1,0 +1,63 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MetropolFinal2.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:MetropolFinal2.ViewModel"
+    x:Class="MetropolFinal2.View.CalendarPage"
+    mc:Ignorable="d">
+
+    <Grid Background="#c0bebf">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.DataContext>
+            <ViewModel:CalendarPageVM/>
+        </Grid.DataContext>
+        <TextBlock HorizontalAlignment="Left" Foreground="#012255" Margin="110,50,0,0" TextWrapping="Wrap" Text="Select the date" FontSize="35" VerticalAlignment="Top"/>
+        <StackPanel Grid.Column="1" Margin="0,0,0,0" Orientation="Vertical" Grid.Row="1" Height="130" >
+            <DatePicker x:Name="DatePicker" HorizontalAlignment="Center" Margin="0,6,0,12" VerticalAlignment="Center" CalendarIdentifier="GregorianCalendar" MinYear="{Binding MinYear}" Date="{Binding SelectedDate, Mode=TwoWay}"/>
+            <Button Content="Confirm" Margin="0,25,0,0" Height="50" Width="160" HorizontalAlignment="Center" Command="{Binding NavigateToRoomCommand}" Foreground="#FF00CBFD" BorderBrush="#FF231F20" Background="#FF231F20" />
+        </StackPanel>
+        <!--<TextBox x:Name="ShowDate" HorizontalAlignment="Left" Margin="302,239,0,0" TextWrapping="Wrap" Text="{Binding SelectedDate, Mode=TwoWay}" VerticalAlignment="Top"/>-->
+        <!--<Button Content="Button" HorizontalAlignment="Left" Margin="193,299,0,0" VerticalAlignment="Top" Click="Button_Click"/>-->
+        <AppBarButton HorizontalAlignment="Left" Icon="Back" Margin="18,36,0,0" VerticalAlignment="Top" Command="{Binding NavigateBackCommand}" Foreground="#FF012255" Height="68"/>
+        <!--<Grid x:Name="grid" HorizontalAlignment="Left" Height="393" Margin="610,180,0,0" VerticalAlignment="Top" Width="422">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" Text="Mon" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" Text="Tue" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" TextWrapping="Wrap" Text="Wed" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0" TextWrapping="Wrap" Text="Thu" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Grid.Column="4" Grid.Row="0" TextWrapping="Wrap" Text="Fri" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Grid.Column="5" Grid.Row="0" TextWrapping="Wrap" Text="Sat" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Grid.Column="6" Grid.Row="0" TextWrapping="Wrap" Text="Sun" FontSize="20" VerticalAlignment="Center"/>
+            
+        </Grid>-->
+
+    </Grid>
+</Page>

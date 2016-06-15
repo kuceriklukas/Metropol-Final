@@ -1,0 +1,31 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MetropolFinal2.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:MetropolFinal2.ViewModel"
+    x:Class="MetropolFinal2.View.LoginPage"
+    mc:Ignorable="d">
+
+    <Grid Background="#c0bebf">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.DataContext>
+            <ViewModel:LoginVM/>
+        </Grid.DataContext>
+        <TextBox HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" Text="{Binding EnteredName, Mode=TwoWay}" VerticalAlignment="Top" PlaceholderText="Name" Width="164" Grid.Column="1" Grid.Row="1"/>
+        <PasswordBox HorizontalAlignment="Center" Password="{Binding EnteredPassword, Mode=TwoWay}" Margin="0,90,0,0"  VerticalAlignment="Top" PlaceholderText="Password" Width="164" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="Log in" HorizontalAlignment="Center" Margin="0,149,0,0" VerticalAlignment="Top" Width="170" Height="45" Command="{Binding LoginCommand}" Grid.Column="1" Grid.Row="1" Foreground="#FF00CBFD" BorderBrush="#FF231F20" Background="#FF231F20"/>
+        <Image Grid.Column="1" HorizontalAlignment="Center" Height="175" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="436" Source="ms-appx:///Assets/PHmetropol-logoMY.png"/>
+
+    </Grid>
+</Page>

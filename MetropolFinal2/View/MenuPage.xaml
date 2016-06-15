@@ -1,0 +1,34 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MetropolFinal2.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:MetropolFinal2.ViewModel"
+    x:Class="MetropolFinal2.View.MenuPage"
+    mc:Ignorable="d">
+
+    <Grid Background="#c0bebf">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.DataContext>
+            <ViewModel:MenuVM/>
+        </Grid.DataContext>
+        <StackPanel Grid.Column="1" Margin="0,0,0,0" Orientation="Vertical" Grid.Row="1">
+            <Button Height="70" Width="230" Content="Book a room" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Command="{Binding NavigateToBookingCommand}" Foreground="#FF00CBFD" BorderBrush="#FF231F20" Background="#FF231F20"/>
+            <Button Height="70" Width="230" Content="View current bookings" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Command="{Binding NavigateToCurrentBookingsCommand}" Foreground="#FF00CBFD" BorderBrush="#FF231F20" Background="#FF231F20"/>
+            <Button Height="70" Width="230" Content="Messages" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Command="{Binding NavigateToMessagesCommand}" Foreground="#FF00CBFD" BorderBrush="#FF231F20" Background="#FF231F20"/>
+        </StackPanel>
+        <Button Height="50" Width="230" Content="Log out" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Command="{Binding LogOutCommand}" Grid.Column="1" Grid.Row="2" Foreground="#FFFD9300" BorderBrush="#FF231F20" Background="#FF231F20" />
+        <Image HorizontalAlignment="Center" Height="138" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="413" Source="ms-appx:///Assets/PHmetropol-logoMY.png" Grid.Column="1"/>
+
+    </Grid>
+</Page>

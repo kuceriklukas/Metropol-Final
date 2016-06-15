@@ -1,0 +1,101 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MetropolFinal2.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:MetropolFinal2.ViewModel"
+    x:Class="MetropolFinal2.View.InvitePeoplePage"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="ListViewItemStyle1" TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="IsHoldingEnabled" Value="True"/>
+            <Setter Property="Margin" Value="0,0,18,2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <ListViewItemPresenter CheckHintBrush="{ThemeResource ListViewItemCheckHintThemeBrush}" CheckBrush="#FFFFFFFF" ContentMargin="4" ContentTransitions="{TemplateBinding ContentTransitions}" CheckSelectingBrush="{ThemeResource ListViewItemCheckSelectingThemeBrush}" DragForeground="{ThemeResource ListViewItemDragForegroundThemeBrush}" DragOpacity="{ThemeResource ListViewItemDragThemeOpacity}" DragBackground="#66FFFFFF" DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}" FocusBorderBrush="{ThemeResource ListViewItemFocusBorderThemeBrush}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" PointerOverBackgroundMargin="1" PlaceholderBackground="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" PointerOverBackground="#4DFFFFFF" ReorderHintOffset="{ThemeResource ListViewItemReorderHintThemeOffset}" SelectedPointerOverBorderBrush="#FF003A5A" SelectionCheckMarkVisualEnabled="True" SelectedForeground="{ThemeResource ListViewItemSelectedForegroundThemeBrush}" SelectedBackground="#FF004F63" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" SelectedPointerOverBackground="#FF003D58" Foreground="#FF003947"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#c0bebf">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.DataContext>
+            <ViewModel:InvitePeopleVM/>
+        </Grid.DataContext>
+        <TextBlock HorizontalAlignment="Left" Foreground="#012255" Margin="110,50,0,0" TextWrapping="Wrap" Text="Invite people" FontSize="35" VerticalAlignment="Top"/>
+        <StackPanel HorizontalAlignment="Right" Grid.Column="0" Margin="0,20,20,0" Orientation="Vertical" Grid.Row="1">
+            <TextBlock HorizontalAlignment="Left" Foreground="#012255" TextWrapping="Wrap" Text="Contacts" FontSize="30" VerticalAlignment="Top"/>
+            <TextBlock Foreground="#012255" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Click on a student to add him to attendees' list" FontSize="18" VerticalAlignment="Top"/>
+            <ListView ItemContainerStyle="{StaticResource ListViewItemStyle1}" HorizontalAlignment="Left" Height="416" VerticalAlignment="Top" Width="363" ItemsSource="{Binding StudentList}" SelectedItem="{Binding SelectedStudent, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Width="480">
+                            <TextBlock Margin="10,10,0,0" HorizontalAlignment="Left" Width="490" Height="28" FontWeight="Bold" FontSize="18" FontFamily="Global User Interface">
+                                <Run Text="{Binding FirstName}"> </Run>
+                                <Run Text="{Binding LastName}"> </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" Grid.Column="1" Margin="0,20,0,0" Orientation="Vertical" Grid.Row="1">
+            <TextBlock HorizontalAlignment="Left" Foreground="#012255" TextWrapping="Wrap" Text="New Attendees" FontSize="30" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Foreground="#012255" TextWrapping="Wrap" Text="Click on an attendee to remove him from the list" FontSize="18" VerticalAlignment="Top"/>
+            <ListView ItemContainerStyle="{StaticResource ListViewItemStyle1}" HorizontalAlignment="Left" Height="416" VerticalAlignment="Top" Width="362" ItemsSource="{Binding ListOfStudents}" SelectedItem="{Binding SelectedAttendee, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Width="480">
+                            <TextBlock Margin="10,10,0,0" HorizontalAlignment="Left" Width="490" Height="28" FontWeight="Bold" FontSize="18" FontFamily="Global User Interface">
+                                <Run Text="{Binding FirstName}"> </Run>
+                                <Run Text="{Binding LastName}"> </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <AppBarButton HorizontalAlignment="Left" Icon="Back" Margin="18,36,0,0" VerticalAlignment="Top" Command="{Binding NavigateBackCommand}" Foreground="#FF012255"  Height="68"/>
+        <Button Content="Invite those people" Height="50" Width="200" HorizontalAlignment="Right" Margin="0,10,20,0" VerticalAlignment="Top" Command="{Binding InvitePeopleCommand}" Foreground="#FF00CBFD" BorderBrush="#FF231F20" Background="#FF231F20" Grid.Column="1" Grid.Row="2"/>
+        <StackPanel HorizontalAlignment="Left" Grid.Column="2" Margin="20,20,0,0" Orientation="Vertical" Grid.Row="1">
+            <TextBlock HorizontalAlignment="Left" Foreground="#012255" TextWrapping="Wrap" Text="Already Invited" FontSize="30" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Foreground="#012255" TextWrapping="Wrap" Text="People already invited on this meeting" FontSize="18" VerticalAlignment="Top"/>
+            <ListView ItemContainerStyle="{StaticResource ListViewItemStyle1}" HorizontalAlignment="Left" Height="416" VerticalAlignment="Top" Width="296" ItemsSource="{Binding AleadyInvitedStudents}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Width="480">
+                            <TextBlock Margin="10,10,0,0" HorizontalAlignment="Left" Width="490" Height="28" FontWeight="Bold" FontSize="18" FontFamily="Global User Interface">
+                                <Run Text="{Binding FirstName}"> </Run>
+                                <Run Text="{Binding LastName}"> </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <TextBox HorizontalAlignment="Right" Height="50" Margin="0,10,180,0" TextWrapping="Wrap" Text="{Binding FilterText, Mode=TwoWay}" VerticalAlignment="Top" Width="152" Grid.Row="2"/>
+        <Button Height="50" Width="150" Content="Filter students" HorizontalAlignment="Right" Margin="0,10,5,0" VerticalAlignment="Top" Command="{Binding FilterStudentsCommand}" Foreground="#FF00CBFD" BorderBrush="#FF231F20" Background="#FF231F20" Grid.Row="2" />
+        <Button Height="50" Width="150" Content="Reset" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Command="{Binding ResetListsCommand}" Foreground="#FF00CBFD" BorderBrush="#FF231F20" Background="#FF231F20" Grid.Column="1" Grid.Row="2" />
+
+    </Grid>
+</Page>
